@@ -7,25 +7,18 @@ import { PinInputButton } from "./components/PinInputButton";
 import { ValueStatus } from "mendix";
 import { DeleteButton } from "./components/DeleteButton";
 
-export function NativePinInput({
-    style,
-    dataAttr,
-    maxLength,
-    deleteButtonIcon,
-    darkMode,
-    buttonStyle,
-    onChangeAction,
-    onInputCompleteAction
-}: NativePinInputProps<CustomStyle>): ReactElement {
+export function NativePinInput(props: NativePinInputProps<CustomStyle>): ReactElement {
     const deviceDarkMode = Appearance.getColorScheme() === "dark";
 
     const [textValue, setTextValue] = useState<string>("");
     const [displayValue, setDisplayValue] = useState<string>("");
 
+    const { style, dataAttr, maxLength } = props;
+
     // Insert additional styles based on properties.
     // These must be placed at the top of the array, using unshift, to allow overrule by project theme styles and design properties.
     const styleArray: CustomStyle[] = [...style];
-    switch (darkMode) {
+    switch (props.darkMode) {
         case "dark":
             styleArray.unshift(darkStyles);
             break;
@@ -41,7 +34,7 @@ export function NativePinInput({
                 styleArray.unshift(lightStyles);
             }
     }
-    if (buttonStyle === "circle") {
+    if (props.buttonStyle === "circle") {
         styleArray.unshift(circleStyles);
     } else {
         styleArray.unshift(numKeyboardStyles);
@@ -72,10 +65,12 @@ export function NativePinInput({
             // Execute on change action if more input expected,
             // execute on input complete action if all digits were entered.
             if (displayValueLength < maxLength) {
+                const { onChangeAction } = props;
                 if (onChangeAction && onChangeAction.canExecute && !onChangeAction.isExecuting) {
                     onChangeAction.execute();
                 }
             } else {
+                const { onInputCompleteAction } = props;
                 if (onInputCompleteAction && onInputCompleteAction.canExecute && !onInputCompleteAction.isExecuting) {
                     onInputCompleteAction.execute();
                 }
@@ -93,6 +88,7 @@ export function NativePinInput({
             dataAttr.setTextValue(newValue);
             setTextValue(newValue);
             setDisplayValue(newDisplayValue);
+            const { onChangeAction } = props;
             if (onChangeAction && onChangeAction.canExecute && !onChangeAction.isExecuting) {
                 onChangeAction.execute();
             }
@@ -109,31 +105,47 @@ export function NativePinInput({
         return <Text style={mergedStyle.validationMessage}>{validation}</Text>;
     }, [mergedStyle, dataAttr.validation]);
 
+    const deleteButtonAccessibilityLabelValue = props.deleteButtonAccessibilityLabel?.value
+        ? props.deleteButtonAccessibilityLabel?.value
+        : "Delete";
+
     return (
-        <View style={mergedStyle.container}>
+        <View
+            style={mergedStyle.container}
+            accessible
+            accessibilityLabel={props.accessibilityLabel?.value}
+            accessibilityHint={props.accessibilityHint?.value}
+            testID={props.name}
+        >
             <View style={mergedStyle.valueRow}>
                 <TextInput editable={false} style={mergedStyle.readonlyText} value={displayValue} secureTextEntry />
                 {renderValidation}
             </View>
             <View style={mergedStyle.buttonRow}>
-                <PinInputButton caption="1" style={mergedStyle} onClick={onClick} />
-                <PinInputButton caption="2" style={mergedStyle} onClick={onClick} />
-                <PinInputButton caption="3" style={mergedStyle} onClick={onClick} />
+                <PinInputButton caption="1" style={mergedStyle} onClick={onClick} widgetName={props.name} />
+                <PinInputButton caption="2" style={mergedStyle} onClick={onClick} widgetName={props.name} />
+                <PinInputButton caption="3" style={mergedStyle} onClick={onClick} widgetName={props.name} />
             </View>
             <View style={mergedStyle.buttonRow}>
-                <PinInputButton caption="4" style={mergedStyle} onClick={onClick} />
-                <PinInputButton caption="5" style={mergedStyle} onClick={onClick} />
-                <PinInputButton caption="6" style={mergedStyle} onClick={onClick} />
+                <PinInputButton caption="4" style={mergedStyle} onClick={onClick} widgetName={props.name} />
+                <PinInputButton caption="5" style={mergedStyle} onClick={onClick} widgetName={props.name} />
+                <PinInputButton caption="6" style={mergedStyle} onClick={onClick} widgetName={props.name} />
             </View>
             <View style={mergedStyle.buttonRow}>
-                <PinInputButton caption="7" style={mergedStyle} onClick={onClick} />
-                <PinInputButton caption="8" style={mergedStyle} onClick={onClick} />
-                <PinInputButton caption="9" style={mergedStyle} onClick={onClick} />
+                <PinInputButton caption="7" style={mergedStyle} onClick={onClick} widgetName={props.name} />
+                <PinInputButton caption="8" style={mergedStyle} onClick={onClick} widgetName={props.name} />
+                <PinInputButton caption="9" style={mergedStyle} onClick={onClick} widgetName={props.name} />
             </View>
             <View style={mergedStyle.buttonRow}>
                 <View style={mergedStyle.emptyContainer}></View>
-                <PinInputButton caption="0" style={mergedStyle} onClick={onClick} />
-                <DeleteButton deleteButtonIcon={deleteButtonIcon} style={mergedStyle} onClick={onDeleteClick} />
+                <PinInputButton caption="0" style={mergedStyle} onClick={onClick} widgetName={props.name} />
+                <DeleteButton
+                    deleteButtonIcon={props.deleteButtonIcon}
+                    style={mergedStyle}
+                    onClick={onDeleteClick}
+                    accessibilityLabel={deleteButtonAccessibilityLabelValue}
+                    widgetName={props.name}
+                />
             </View>
         </View>
     );

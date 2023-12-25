@@ -20,10 +20,17 @@ export interface NativePinInputProps<Style> {
     buttonStyle: ButtonStyleEnum;
     onChangeAction?: ActionValue;
     onInputCompleteAction?: ActionValue;
+    accessibilityLabel?: DynamicValue<string>;
+    deleteButtonAccessibilityLabel?: DynamicValue<string>;
+    accessibilityHint?: DynamicValue<string>;
 }
 
 export interface NativePinInputPreviewProps {
+    /**
+     * @deprecated Deprecated since version 9.18.0. Please use class property instead.
+     */
     className: string;
+    class: string;
     style: string;
     styleObject?: CSSProperties;
     readOnly: boolean;
@@ -34,4 +41,7 @@ export interface NativePinInputPreviewProps {
     buttonStyle: ButtonStyleEnum;
     onChangeAction: {} | null;
     onInputCompleteAction: {} | null;
+    accessibilityLabel: string;
+    deleteButtonAccessibilityLabel: string;
+    accessibilityHint: string;
 }

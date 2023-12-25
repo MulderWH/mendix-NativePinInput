@@ -7,7 +7,9 @@ export interface CustomStyle extends Style {
     buttonRow: ViewStyle;
     valueRow: ViewStyle;
     pinInputView: ViewStyle;
+    pinInputViewPressed: ViewStyle;
     deleteButtonTouchable: ViewStyle;
+    deleteButtonTouchablePressed: ViewStyle;
     emptyContainer: ViewStyle;
     icon: TextStyle;
     caption: TextStyle;
@@ -40,10 +42,17 @@ export const commonStyles = StyleSheet.create({
     pinInputView: {
         justifyContent: "center"
     },
+    pinInputViewPressed: {
+        justifyContent: "center"
+    },
     deleteButtonTouchable: {
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "transparent"
+    },
+    deleteButtonTouchablePressed: {
+        justifyContent: "center",
+        alignItems: "center"
     },
     emptyContainer: {
         backgroundColor: "transparent"
@@ -63,7 +72,9 @@ export const defaultStyle: CustomStyle = {
     buttonRow: commonStyles.buttonRow,
     valueRow: commonStyles.valueRow,
     pinInputView: commonStyles.pinInputView,
+    pinInputViewPressed: commonStyles.pinInputViewPressed,
     deleteButtonTouchable: commonStyles.deleteButtonTouchable,
+    deleteButtonTouchablePressed: commonStyles.deleteButtonTouchablePressed,
     icon: commonStyles.icon,
     emptyContainer: commonStyles.emptyContainer,
     caption: commonStyles.caption,
@@ -81,7 +92,13 @@ export const darkStyles = StyleSheet.create({
     pinInputView: {
         backgroundColor: "#1c1c1c"
     },
+    pinInputViewPressed: {
+        backgroundColor: "#3B4251"
+    },
     deleteButtonTouchable: {},
+    deleteButtonTouchablePressed: {
+        backgroundColor: "#3B4251"
+    },
     emptyContainer: {},
     icon: {
         color: "#FFFFFF"
@@ -102,7 +119,13 @@ export const lightStyles = StyleSheet.create({
     pinInputView: {
         backgroundColor: "#f8f8f8"
     },
+    pinInputViewPressed: {
+        backgroundColor: "#CED0D3"
+    },
     deleteButtonTouchable: {},
+    deleteButtonTouchablePressed: {
+        backgroundColor: "#CED0D3"
+    },
     emptyContainer: {},
     icon: {
         color: "#000000"
@@ -128,10 +151,24 @@ export const circleStyles = StyleSheet.create({
         width: 70,
         borderRadius: 35
     },
+    pinInputViewPressed: {
+        marginLeft: 30,
+        alignItems: "center",
+        height: 70,
+        width: 70,
+        borderRadius: 35
+    },
     deleteButtonTouchable: {
         marginLeft: 30,
         height: 70,
-        width: 70
+        width: 70,
+        borderRadius: 35
+    },
+    deleteButtonTouchablePressed: {
+        marginLeft: 30,
+        height: 70,
+        width: 70,
+        borderRadius: 35
     },
     emptyContainer: {
         height: 70,
@@ -155,8 +192,21 @@ export const numKeyboardStyles = StyleSheet.create({
         height: 50,
         width: 85
     },
+    pinInputViewPressed: {
+        marginLeft: 10,
+        borderRadius: 5,
+        height: 50,
+        width: 85
+    },
     deleteButtonTouchable: {
         marginLeft: 10,
+        borderRadius: 5,
+        height: 50,
+        width: 85
+    },
+    deleteButtonTouchablePressed: {
+        marginLeft: 10,
+        borderRadius: 5,
         height: 50,
         width: 85
     },

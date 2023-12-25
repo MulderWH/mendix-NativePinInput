@@ -1,4 +1,4 @@
-import { ReactElement, createElement, useCallback, useMemo } from "react";
+import { ReactElement, createElement, useCallback, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 
 import { CustomStyle } from "src/ui/styles";
@@ -7,20 +7,33 @@ export interface PinInputButtonProps {
     caption: string;
     style: CustomStyle;
     onClick: (value: string) => void;
+    widgetName: string;
 }
 
-export function PinInputButton({ caption, style, onClick }: PinInputButtonProps): ReactElement {
+export function PinInputButton({ caption, style, onClick, widgetName }: PinInputButtonProps): ReactElement {
+    const [pressed, setPressed] = useState<boolean>(false);
+
     const onClickHandler = useCallback((): void => {
         onClick(caption);
     }, [caption, onClick]);
 
-    const renderView = useMemo((): ReactElement => {
-        return (
-            <View style={style.pinInputView}>
-                <Text style={style.caption}>{caption}</Text>
+    return (
+        <Pressable
+            onPress={() => onClickHandler()}
+            style={({ pressed }) => {
+                setPressed(pressed);
+                return [];
+            }}
+            accessible
+            accessibilityLabel={caption}
+            accessibilityRole="button"
+            testID={`${widgetName}$button${caption}`}
+        >
+            <View style={pressed ? style.pinInputViewPressed : style.pinInputView}>
+                <Text style={style.caption} testID={`${widgetName}$button${caption}$caption`}>
+                    {caption}
+                </Text>
             </View>
-        );
-    }, [caption, style]);
-
-    return <Pressable onPress={() => onClickHandler()}>{renderView}</Pressable>;
+        </Pressable>
+    );
 }

@@ -54,5 +54,19 @@
                 <description>Action to trigger when user has entered the required number of digits</description>
             </property>
         </propertyGroup>
+        <propertyGroup caption="Accessibility">
+            <property key="accessibilityLabel" type="textTemplate" required="false">
+                <caption>Caption</caption>
+                <description>To be announced only by screen readers</description>
+            </property>
+            <property key="deleteButtonAccessibilityLabel" type="textTemplate" required="false">
+                <caption>Delete button caption</caption>
+                <description>To be announced only by screen readers</description>
+            </property>
+            <property key="accessibilityHint" type="textTemplate" required="false">
+                <caption>Screen reader hint</caption>
+                <description>Explains what happens</description>
+            </property>
+        </propertyGroup>
     </properties>
 </widget>
