@@ -1,7 +1,7 @@
 {
   "name": "nativepininput",
   "widgetName": "NativePinInput",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Native pin input",
   "copyright": "ITvisors 2019",
   "author": "Marcel Groeneweg",

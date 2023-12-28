@@ -20,9 +20,9 @@ export interface NativePinInputProps<Style> {
     buttonStyle: ButtonStyleEnum;
     onChangeAction?: ActionValue;
     onInputCompleteAction?: ActionValue;
-    accessibilityLabel?: DynamicValue<string>;
-    deleteButtonAccessibilityLabel?: DynamicValue<string>;
-    accessibilityHint?: DynamicValue<string>;
+    a11yLabel?: DynamicValue<string>;
+    deleteButtonA11yLabel?: DynamicValue<string>;
+    a11yHint?: DynamicValue<string>;
 }
 
 export interface NativePinInputPreviewProps {
@@ -41,7 +41,7 @@ export interface NativePinInputPreviewProps {
     buttonStyle: ButtonStyleEnum;
     onChangeAction: {} | null;
     onInputCompleteAction: {} | null;
-    accessibilityLabel: string;
-    deleteButtonAccessibilityLabel: string;
-    accessibilityHint: string;
+    a11yLabel: string;
+    deleteButtonA11yLabel: string;
+    a11yHint: string;
 }

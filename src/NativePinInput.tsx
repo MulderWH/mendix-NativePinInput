@@ -105,16 +105,16 @@ export function NativePinInput(props: NativePinInputProps<CustomStyle>): ReactEl
         return <Text style={mergedStyle.validationMessage}>{validation}</Text>;
     }, [mergedStyle, dataAttr.validation]);
 
-    const deleteButtonAccessibilityLabelValue = props.deleteButtonAccessibilityLabel?.value
-        ? props.deleteButtonAccessibilityLabel?.value
+    const deleteButtonA11yLabelValue = props.deleteButtonA11yLabel?.value
+        ? props.deleteButtonA11yLabel?.value
         : "Delete";
 
     return (
         <View
             style={mergedStyle.container}
             accessible
-            accessibilityLabel={props.accessibilityLabel?.value}
-            accessibilityHint={props.accessibilityHint?.value}
+            accessibilityLabel={props.a11yLabel?.value}
+            accessibilityHint={props.a11yHint?.value}
             testID={props.name}
         >
             <View style={mergedStyle.valueRow}>
@@ -143,7 +143,7 @@ export function NativePinInput(props: NativePinInputProps<CustomStyle>): ReactEl
                     deleteButtonIcon={props.deleteButtonIcon}
                     style={mergedStyle}
                     onClick={onDeleteClick}
-                    accessibilityLabel={deleteButtonAccessibilityLabelValue}
+                    accessibilityLabel={deleteButtonA11yLabelValue}
                     widgetName={props.name}
                 />
             </View>
