@@ -108,13 +108,13 @@ public class TestEntity implements com.mendix.systemwideinterfaces.core.IEntityP
 		getMendixObject().setValue(context, MemberNames.PinValue.toString(), pinvalue);
 	}
 
-	@Override
+	@java.lang.Override
 	public final com.mendix.systemwideinterfaces.core.IMendixObject getMendixObject()
 	{
 		return testEntityMendixObject;
 	}
 
-	@Override
+	@java.lang.Override
 	public final com.mendix.systemwideinterfaces.core.IContext getContext()
 	{
 		return context;
