@@ -109,15 +109,16 @@ export function NativePinInput(props: NativePinInputProps<CustomStyle>): ReactEl
         ? props.deleteButtonA11yLabel?.value
         : "Delete";
 
+    // Accessibility for the entire widget must be placed at the subview that has the input
+    // Placing it at the topmost view prevents the individual buttons from being accessed
     return (
-        <View
-            style={mergedStyle.container}
-            accessible
-            accessibilityLabel={props.a11yLabel?.value}
-            accessibilityHint={props.a11yHint?.value}
-            testID={props.name}
-        >
-            <View style={mergedStyle.valueRow}>
+        <View style={mergedStyle.container} testID={props.name}>
+            <View
+                style={mergedStyle.valueRow}
+                accessible
+                accessibilityLabel={props.a11yLabel?.value}
+                accessibilityHint={props.a11yHint?.value}
+            >
                 <TextInput editable={false} style={mergedStyle.readonlyText} value={displayValue} secureTextEntry />
                 {renderValidation}
             </View>

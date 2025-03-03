@@ -19,17 +19,19 @@ export function PinInputButton({ caption, style, onClick, widgetName }: PinInput
 
     return (
         <Pressable
-            onPress={() => onClickHandler()}
+            onPress={onClickHandler}
             style={({ pressed }) => {
                 setPressed(pressed);
                 return [];
             }}
-            accessible
-            accessibilityLabel={caption}
-            accessibilityRole="button"
-            testID={`${widgetName}$button${caption}`}
         >
-            <View style={pressed ? style.pinInputViewPressed : style.pinInputView}>
+            <View
+                style={pressed ? style.pinInputViewPressed : style.pinInputView}
+                accessible
+                accessibilityLabel={caption}
+                accessibilityRole="button"
+                testID={`${widgetName}$button${caption}`}
+            >
                 <Text style={style.caption} testID={`${widgetName}$button${caption}$caption`}>
                     {caption}
                 </Text>
